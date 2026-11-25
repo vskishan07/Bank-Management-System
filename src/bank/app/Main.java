@@ -35,10 +35,17 @@ public class Main {
                         System.out.println("Annual interest applied to eligible accounts.");
                     }
                     case 8 -> {
-                        running = false;
-                        System.out.println("Exiting Bank Management System. Goodbye!");
+                        System.out.print("Enter Account Number to delete: ");
+                        String accNo = scanner.nextLine().trim();
+                         try {
+                            Account deleted = bankService.deleteAccount(accNo);
+                            System.out.println("Account deleted successfully: " + deleted.getAccountNumber());
+                        } catch (AccountNotFoundException ex) {
+                            System.out.println("Error: " + ex.getMessage());
+                        }
                     }
-                    default -> System.out.println("Invalid choice. Please select between 1 and 8.");
+                    case 9 -> running = false;
+                    default -> System.out.println("Invalid choice. Please select between 1 and 9.");
                 }
             } catch (EndOfInputException ex) {
                 System.out.println("\nInput stream ended. Exiting Bank Management System.");
@@ -59,8 +66,10 @@ public class Main {
         System.out.println("5. Check Balance & Mini Statement");
         System.out.println("6. View All Accounts");
         System.out.println("7. Apply Annual Interest");
-        System.out.println("8. Exit");
+        System.out.println("8. Delete Account");
+        System.out.println("9. Exit");
     }
+
 
     private static void handleCreateAccount(Scanner scanner)
             throws InvalidAmountException, EndOfInputException {

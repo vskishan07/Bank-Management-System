@@ -2,8 +2,11 @@ package bank.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.io.Serializable;
 
-public class Transaction {
+public class Transaction implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     public enum Type {
         DEPOSIT, WITHDRAWAL, TRANSFER_IN, TRANSFER_OUT, INTEREST
     }

@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import java.io.Serializable;
 
-public abstract class Account {
+public abstract class Account implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final String accountNumber;
     private final String holderName;
     protected double balance;
